@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TracNghiemLaiXe.Views.MainPage"
+             Title="Trang Chủ"
+             BackgroundColor="#F8FAFC">
+
+    <VerticalStackLayout Spacing="25" 
+                         Padding="30" 
+                         VerticalOptions="Center"
+                         HorizontalOptions="Fill">
+
+        <Label Text="🚗" 
+               FontSize="80" 
+               HorizontalOptions="Center" />
+
+        <Label Text="ÔN THI GPLX" 
+               FontSize="32" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" 
+               TextColor="#0F172A"/>
+
+        <Label Text="Chọn hạng bằng lái của bạn" 
+               TextColor="#64748B" 
+               HorizontalOptions="Center" />
+
+        <Picker x:Name="LicensePicker" 
+                Title="Chọn hạng bằng (VD: A1, B2)"
+                BackgroundColor="White"
+                TextColor="#0F172A"
+                TitleColor="#64748B">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>A1</x:String>
+                    <x:String>A2</x:String>
+                    <x:String>A3</x:String>
+                    <x:String>A4</x:String>
+                    <x:String>B1</x:String>
+                    <x:String>B2</x:String>
+                    <x:String>C</x:String>
+                    <x:String>D</x:String>
+                    <x:String>E</x:String>
+                    <x:String>F</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+            <!-- Default selected index is now 5 (B2) -->
+            <Picker.SelectedIndex>5</Picker.SelectedIndex>
+        </Picker>
+
+        <Button Text="BẮT ĐẦU THI" 
+                Clicked="OnStartClicked"
+                BackgroundColor="#2563EB"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="12"
+                HeightRequest="50"
+                Margin="0,20,0,0"/>
+
+    </VerticalStackLayout>
+</ContentPage>

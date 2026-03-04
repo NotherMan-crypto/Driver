@@ -1,0 +1,394 @@
+{
+    "questions": [
+        {
+            "id": 1,
+            "question_text": "Khái niệm 'phương tiện giao thông cơ giới đường bộ' được hiểu như thế nào là đúng?",
+            "image_url": null,
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Gồm xe ô tô, máy kéo, xe mô tô hai bánh, xe gắn máy."
+                },
+                {
+                    "id": 2,
+                    "text": "Gồm xe ô tô, máy kéo, rơ moóc được kéo bởi xe ô tô, máy kéo."
+                },
+                {
+                    "id": 3,
+                    "text": "Gồm xe ô tô, máy kéo, rơ moóc, sơ mi rơ moóc, xe mô tô hai bánh, xe mô tô ba bánh, xe gắn máy và các loại xe tương tự."
+                },
+                {
+                    "id": 4,
+                    "text": "Gồm tất cả các loại xe có động cơ hoạt động trên đường."
+                }
+            ],
+            "correct_answer_id": 3,
+            "category": "concepts_and_rules",
+            "license_types": [
+                "A1",
+                "A2",
+                "A3",
+                "A4",
+                "B1",
+                "B2",
+                "C",
+                "D",
+                "E",
+                "F"
+            ],
+            "is_paralysis": false,
+            "explanation": "Theo Luật Giao thông đường bộ 2008, phương tiện giao thông cơ giới đường bộ bao gồm xe ô tô, máy kéo, rơ moóc, sơ mi rơ moóc được kéo bởi xe ô tô, máy kéo, xe mô tô hai bánh, xe mô tô ba bánh, xe gắn máy và các loại xe tương tự.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        },
+        {
+            "id": 2,
+            "question_text": "Người điều khiển xe mô tô hai bánh, xe gắn máy có được phép sử dụng ô (dù) khi tham gia giao thông không?",
+            "image_url": null,
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Được phép sử dụng."
+                },
+                {
+                    "id": 2,
+                    "text": "Không được phép sử dụng."
+                },
+                {
+                    "id": 3,
+                    "text": "Chỉ được sử dụng khi trời mưa to."
+                }
+            ],
+            "correct_answer_id": 2,
+            "category": "concepts_and_rules",
+            "license_types": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+            ],
+            "is_paralysis": true,
+            "explanation": "Theo quy định, người điều khiển xe mô tô hai bánh, xe gắn máy không được sử dụng ô (dù) khi tham gia giao thông vì gây nguy hiểm và cản trở tầm nhìn.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        },
+        {
+            "id": 3,
+            "question_text": "Biển báo này có ý nghĩa gì?",
+            "image_url": "assets/images/q003.png",
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Cấm ô tô."
+                },
+                {
+                    "id": 2,
+                    "text": "Cấm xe máy."
+                },
+                {
+                    "id": 3,
+                    "text": "Cấm xe ô tô và xe máy."
+                },
+                {
+                    "id": 4,
+                    "text": "Cấm mọi phương tiện."
+                }
+            ],
+            "correct_answer_id": 4,
+            "category": "road_signs",
+            "license_types": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C",
+                "D",
+                "E",
+                "F"
+            ],
+            "is_paralysis": false,
+            "explanation": "Biển báo hình tròn nền trắng viền đỏ có hình ô tô và xe máy cấm mọi phương tiện cơ giới lưu thông trên đoạn đường có đặt biển.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        },
+        {
+            "id": 4,
+            "question_text": "Khi lái xe trong điều kiện trời mưa, người lái xe cần lưu ý điều gì?",
+            "image_url": null,
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Tăng tốc độ để thoát nhanh khỏi vùng mưa."
+                },
+                {
+                    "id": 2,
+                    "text": "Giảm tốc độ, tăng khoảng cách an toàn với xe phía trước."
+                },
+                {
+                    "id": 3,
+                    "text": "Bật đèn pha chiếu xa để nhìn rõ hơn."
+                },
+                {
+                    "id": 4,
+                    "text": "Phanh gấp khi cần dừng xe."
+                }
+            ],
+            "correct_answer_id": 2,
+            "category": "driving_techniques",
+            "license_types": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C",
+                "D",
+                "E",
+                "F"
+            ],
+            "is_paralysis": false,
+            "explanation": "Khi trời mưa, mặt đường trơn trượt, tầm nhìn giảm nên người lái xe cần giảm tốc độ và tăng khoảng cách an toàn để có đủ thời gian phản ứng.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        },
+        {
+            "id": 5,
+            "question_text": "Người điều khiển phương tiện giao thông đường bộ mà trong máu hoặc hơi thở có nồng độ cồn thì bị xử lý như thế nào?",
+            "image_url": null,
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Bị xử phạt hành chính nếu vượt quá mức cho phép."
+                },
+                {
+                    "id": 2,
+                    "text": "Bị xử phạt hành chính."
+                },
+                {
+                    "id": 3,
+                    "text": "Chỉ bị nhắc nhở."
+                },
+                {
+                    "id": 4,
+                    "text": "Không bị xử phạt nếu chưa gây tai nạn."
+                }
+            ],
+            "correct_answer_id": 2,
+            "category": "concepts_and_rules",
+            "license_types": [
+                "A1",
+                "A2",
+                "A3",
+                "A4",
+                "B1",
+                "B2",
+                "C",
+                "D",
+                "E",
+                "F"
+            ],
+            "is_paralysis": true,
+            "explanation": "Theo Luật Phòng chống tác hại của rượu bia 2019, nghiêm cấm điều khiển phương tiện tham gia giao thông đường bộ khi trong máu hoặc hơi thở có nồng độ cồn. Vi phạm sẽ bị xử phạt hành chính.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        },
+        {
+            "id": 6,
+            "question_text": "Theo hình ảnh, xe nào được quyền đi trước?",
+            "image_url": "assets/images/q006.png",
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Xe tải."
+                },
+                {
+                    "id": 2,
+                    "text": "Xe con."
+                },
+                {
+                    "id": 3,
+                    "text": "Xe máy."
+                }
+            ],
+            "correct_answer_id": 2,
+            "category": "situational_analysis",
+            "license_types": [
+                "B1",
+                "B2",
+                "C",
+                "D",
+                "E",
+                "F"
+            ],
+            "is_paralysis": false,
+            "explanation": "Tại nơi đường giao nhau không có tín hiệu đèn hoặc biển báo, xe từ bên phải được ưu tiên đi trước. Trong tình huống này, xe con ở bên phải xe tải nên được đi trước.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        },
+        {
+            "id": 7,
+            "question_text": "Biển báo này báo hiệu điều gì?",
+            "image_url": "assets/images/q007.png",
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Đường cấm."
+                },
+                {
+                    "id": 2,
+                    "text": "Đường một chiều."
+                },
+                {
+                    "id": 3,
+                    "text": "Đường ưu tiên."
+                },
+                {
+                    "id": 4,
+                    "text": "Dừng lại."
+                }
+            ],
+            "correct_answer_id": 4,
+            "category": "road_signs",
+            "license_types": [
+                "A1",
+                "A2",
+                "A3",
+                "A4",
+                "B1",
+                "B2",
+                "C",
+                "D",
+                "E",
+                "F"
+            ],
+            "is_paralysis": false,
+            "explanation": "Biển STOP (bát giác đỏ với chữ STOP trắng) yêu cầu người điều khiển phương tiện dừng lại trước vạch dừng hoặc trước ngã ba, ngã tư để quan sát trước khi đi tiếp.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        },
+        {
+            "id": 8,
+            "question_text": "Trong tình huống dưới đây, thứ tự các xe đi như thế nào là đúng?",
+            "image_url": "assets/images/q008.png",
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Xe cứu thương → Xe con → Xe tải."
+                },
+                {
+                    "id": 2,
+                    "text": "Xe con → Xe cứu thương → Xe tải."
+                },
+                {
+                    "id": 3,
+                    "text": "Xe tải → Xe cứu thương → Xe con."
+                },
+                {
+                    "id": 4,
+                    "text": "Xe cứu thương → Xe tải → Xe con."
+                }
+            ],
+            "correct_answer_id": 1,
+            "category": "situational_analysis",
+            "license_types": [
+                "B1",
+                "B2",
+                "C",
+                "D",
+                "E",
+                "F"
+            ],
+            "is_paralysis": false,
+            "explanation": "Xe cứu thương đang làm nhiệm vụ cấp cứu (có còi, đèn ưu tiên) được quyền ưu tiên đi trước. Sau đó các xe khác đi theo thứ tự quy định tại ngã tư.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        },
+        {
+            "id": 9,
+            "question_text": "Biển báo hiệu này có ý nghĩa gì?",
+            "image_url": "assets/images/q009.png",
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Tốc độ tối đa cho phép là 40 km/h."
+                },
+                {
+                    "id": 2,
+                    "text": "Tốc độ tối thiểu cho phép là 40 km/h."
+                },
+                {
+                    "id": 3,
+                    "text": "Giới hạn khoảng cách tối thiểu giữa hai xe là 40m."
+                }
+            ],
+            "correct_answer_id": 1,
+            "category": "road_signs",
+            "license_types": [
+                "A1",
+                "A2",
+                "A3",
+                "A4",
+                "B1",
+                "B2",
+                "C",
+                "D",
+                "E",
+                "F"
+            ],
+            "is_paralysis": false,
+            "explanation": "Biển tròn viền đỏ, nền trắng với số 40 là biển báo tốc độ tối đa cho phép. Các phương tiện không được chạy quá 40 km/h trên đoạn đường có biển báo này.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        },
+        {
+            "id": 10,
+            "question_text": "Khi điều khiển xe qua đoạn đường ngập nước, người lái xe cần thực hiện như thế nào?",
+            "image_url": null,
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Tăng ga để vượt nhanh qua đoạn ngập."
+                },
+                {
+                    "id": 2,
+                    "text": "Đi từ từ với tốc độ ổn định, giữ ga đều, không chuyển số giữa chừng."
+                },
+                {
+                    "id": 3,
+                    "text": "Phanh liên tục để kiểm soát tốc độ."
+                },
+                {
+                    "id": 4,
+                    "text": "Tắt máy và đẩy xe qua."
+                }
+            ],
+            "correct_answer_id": 2,
+            "category": "driving_techniques",
+            "license_types": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C",
+                "D",
+                "E",
+                "F"
+            ],
+            "is_paralysis": false,
+            "explanation": "Khi đi qua đoạn ngập nước, cần đi từ từ với tốc độ ổn định, giữ ga đều để tránh nước vào ống xả gây chết máy. Không nên tăng ga đột ngột hoặc phanh gấp.",
+            "version": 1,
+            "last_updated": "2026-01-28T11:53:00+07:00"
+        }
+    ],
+    "metadata": {
+        "total_questions": 10,
+        "paralysis_count": 2,
+        "categories_covered": [
+            "concepts_and_rules",
+            "road_signs",
+            "driving_techniques",
+            "situational_analysis"
+        ],
+        "schema_version": 1,
+        "last_updated": "2026-01-28T11:53:00+07:00"
+    }
+}

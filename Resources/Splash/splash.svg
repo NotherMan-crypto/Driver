@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" fill="#2563EB"/>
+  <circle cx="64" cy="50" r="30" fill="white" opacity="0.9"/>
+  <text x="64" y="60" text-anchor="middle" font-size="32" font-weight="bold" fill="#2563EB">LX</text>
+  <text x="64" y="100" text-anchor="middle" font-size="12" font-weight="500" fill="white">THI SÁT HẠCH</text>
+</svg>

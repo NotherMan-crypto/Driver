@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TracNghiemLaiXe.ViewModels"
+             xmlns:models="clr-namespace:TracNghiemLaiXe.Models"
+             xmlns:converters="clr-namespace:TracNghiemLaiXe.Converters"
+             xmlns:views="clr-namespace:TracNghiemLaiXe.Views"
+             x:Class="TracNghiemLaiXe.Views.QuizPage"
+             x:Name="QuizPageRoot"
+             x:DataType="vm:QuizViewModel"
+             Title="Thi Sát Hạch"
+             BackgroundColor="{StaticResource PageBackground}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Converters -->
+            <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+            <!-- Colors -->
+            <Color x:Key="PageBackground">#F8FAFC</Color>
+            <Color x:Key="CardBackground">#FFFFFF</Color>
+            <Color x:Key="PrimaryBlue">#2563EB</Color>
+            <Color x:Key="PrimaryBlueLight">#DBEAFE</Color>
+            <Color x:Key="TextPrimary">#0F172A</Color>
+            <Color x:Key="TextSecondary">#64748B</Color>
+            <Color x:Key="BorderColor">#E2E8F0</Color>
+            <Color x:Key="SuccessGreen">#10B981</Color>
+            <Color x:Key="WarningOrange">#F59E0B</Color>
+            <Color x:Key="DangerRed">#EF4444</Color>
+            <Color x:Key="UnansweredGray">#CBD5E1</Color>
+            <Color x:Key="AnsweredBlue">#3B82F6</Color>
+            <Color x:Key="SelectedAnswer">#EFF6FF</Color>
+            <Color x:Key="SelectedBorder">#2563EB</Color>
+            <Color x:Key="Success">#10B981</Color>
+
+            <!-- Styles -->
+            <Style x:Key="HeaderCard" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="Padding" Value="16" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="Transparent" />
+            </Style>
+
+            <Style x:Key="QuestionCard" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="Transparent" />
+            </Style>
+
+            <Style x:Key="AnswerFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="Padding" Value="16" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            </Style>
+
+            <Style x:Key="NavButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBlue}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="FontSize" Value="15" />
+            </Style>
+
+            <Style x:Key="NavButtonSecondary" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+                <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="FontSize" Value="15" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*,Auto,Auto" 
+          Padding="16" 
+          RowSpacing="12">
+        <!-- Header: Question Index + Timer -->
+        <Frame Grid.Row="0" Style="{StaticResource HeaderCard}">
+            <Grid ColumnDefinitions="*,Auto,*">
+                <!-- Question Index -->
+                <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                    <Label Text="Câu hỏi" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                    <Label FontSize="24" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding CurrentQuestionNumber}" TextColor="{StaticResource PrimaryBlue}" />
+                                <Span Text="/" TextColor="{StaticResource TextSecondary}" />
+                                <Span Text="{Binding TotalQuestions}" TextColor="{StaticResource TextSecondary}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+
+                <!-- Timer -->
+                <Frame Grid.Column="1" BackgroundColor="{Binding TimerBackgroundColor}" CornerRadius="12" Padding="16,8" HasShadow="False" BorderColor="Transparent">
+                    <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                        <Label Text="⏱" FontSize="18" VerticalOptions="Center" />
+                        <Label Text="{Binding TimerDisplay}" FontSize="20" FontAttributes="Bold" TextColor="{Binding TimerTextColor}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <!-- Progress -->
+                <VerticalStackLayout Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center">
+                    <Label Text="Đã trả lời" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                    <Label FontSize="24" FontAttributes="Bold" HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding AnsweredCount}" TextColor="{StaticResource SuccessGreen}" />
+                                <Span Text="/" TextColor="{StaticResource TextSecondary}" />
+                                <Span Text="{Binding TotalQuestions}" TextColor="{StaticResource TextSecondary}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+
+        <!-- Main Content: Question + Answers -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="12">
+                <!-- Question Card simplified -->
+                <Frame Style="{StaticResource QuestionCard}">
+                    <VerticalStackLayout Spacing="15">
+                        <Label Text="{Binding CurrentQuestion.QuestionText}"
+                               FontSize="18"
+                               LineHeight="1.5"
+                               TextColor="{StaticResource TextPrimary}" />
+
+                        <Image Source="{Binding CurrentQuestion.ImagePath}"
+                               IsVisible="{Binding CurrentQuestion.ImagePath, Converter={StaticResource StringToBoolConverter}}"
+                               Aspect="AspectFit"
+                               HeightRequest="250"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Answers -->
+                <CollectionView ItemsSource="{Binding CurrentAnswers}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedAnswer}"
+                                SelectionChangedCommand="{Binding SelectAnswerCommand}"
+                                SelectionChangedCommandParameter="{Binding SelectedAnswer}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" 
+                                           ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:AnswerViewModel">
+                            <Frame BackgroundColor="{Binding BackgroundColor}"
+                                   BorderColor="{Binding BorderColor}"
+                                   CornerRadius="12"
+                                   Padding="16"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type views:QuizPage}}, Path=BindingContext.SelectAnswerByIdCommand}"
+                                                          CommandParameter="{Binding Id}" />
+                                </Frame.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*">
+                                    <!-- Answer Letter Badge -->
+                                    <Frame Grid.Column="0"
+                                           WidthRequest="36"
+                                           HeightRequest="36"
+                                           CornerRadius="18"
+                                           Padding="0"
+                                           HasShadow="False"
+                                           BackgroundColor="{Binding BadgeBackgroundColor}"
+                                           BorderColor="{Binding BadgeBorderColor}">
+                                        <Label Text="{Binding AnswerLetter}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               TextColor="{Binding BadgeTextColor}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center" />
+                                    </Frame>
+
+                                    <!-- Answer Text -->
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Text}"
+                                           FontSize="15"
+                                           TextColor="{StaticResource TextPrimary}"
+                                           VerticalOptions="Center"
+                                           Margin="12,0,0,0"
+                                           LineHeight="1.3" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Explanation (Visible in Review Mode) -->
+                <Frame Margin="0,24,0,0"
+                       Padding="20"
+                       CornerRadius="16"
+                       BackgroundColor="#F0FDF4" 
+                       BorderColor="{StaticResource Success}"
+                       HasShadow="False"
+                       IsVisible="{Binding IsReviewMode}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="💡 Giải thích đáp án" 
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource Success}" />
+                        <Label Text="{Binding CurrentQuestion.Explanation}"
+                               FontSize="15"
+                               TextColor="{StaticResource TextPrimary}"
+                               LineHeight="1.5"
+                               IsVisible="{Binding CurrentQuestion.Explanation, Converter={StaticResource StringToBoolConverter}}" />
+                        <Label Text="(Chưa có giải thích cho câu này)"
+                               FontSize="14"
+                               TextColor="{StaticResource TextSecondary}"
+                               FontAttributes="Italic"
+                               IsVisible="{Binding CurrentQuestion.Explanation, Converter={StaticResource StringToBoolConverter}, ConverterParameter=invert}" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Navigation Buttons -->
+        <Grid Grid.Row="2" 
+              ColumnDefinitions="*,*" 
+              ColumnSpacing="12">
+            <Button Grid.Column="0"
+                    Text="← Câu trước"
+                    Style="{StaticResource NavButtonSecondary}"
+                    Command="{Binding PreviousQuestionCommand}"
+                    IsEnabled="{Binding CanGoPrevious}" />
+            <Button Grid.Column="1"
+                    Text="{Binding NextButtonText}"
+                    Style="{StaticResource NavButton}"
+                    Command="{Binding NextQuestionCommand}" />
+        </Grid>
+
+        <!-- Question Grid Navigator -->
+        <Frame Grid.Row="3" 
+               Style="{StaticResource HeaderCard}"
+               Padding="12">
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Danh sách câu hỏi"
+                       FontSize="13"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextSecondary}" />
+                <FlexLayout BindableLayout.ItemsSource="{Binding QuestionNavigators}"
+                            Wrap="Wrap"
+                            JustifyContent="Start"
+                            AlignItems="Start">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="vm:QuestionNavigatorItem">
+                            <Frame WidthRequest="40"
+                                   HeightRequest="40"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   Margin="3"
+                                   HasShadow="False"
+                                   BackgroundColor="{Binding BackgroundColor}"
+                                   BorderColor="{Binding BorderColor}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type views:QuizPage}}, Path=BindingContext.JumpToQuestionCommand}"
+                                                          CommandParameter="{Binding QuestionIndex}" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="{Binding DisplayNumber}"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="{Binding TextColor}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

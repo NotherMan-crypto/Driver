@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TracNghiemLaiXe.ViewModels"
+             xmlns:models="clr-namespace:TracNghiemLaiXe.Models"
+             x:Class="TracNghiemLaiXe.Views.ReviewPage"
+             x:DataType="vm:ReviewViewModel"
+             Title="Kết quả thi">
+
+    <Grid RowDefinitions="Auto, Auto, *">
+
+        <!-- Header Score -->
+        <Grid Grid.Row="0" ColumnDefinitions="*, *" Padding="16" BackgroundColor="{StaticResource Surface}">
+            <VerticalStackLayout Grid.Column="0">
+                <Label Text="Kết quả" Style="{StaticResource CaptionLabel}" />
+                <Label Text="{Binding StatusText}" 
+                       TextColor="{Binding StatusColor}"
+                       Style="{StaticResource TitleLabel}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="End">
+                <Label Text="Điểm số" Style="{StaticResource CaptionLabel}" HorizontalOptions="End" />
+                <Label Text="{Binding ScoreText}" Style="{StaticResource TitleLabel}" HorizontalOptions="End" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Filter Chips -->
+        <ScrollView Grid.Row="1" Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Padding="16,8">
+            <HorizontalStackLayout Spacing="8">
+                <!-- Using Buttons as Chips for simplicity -->
+                <Button Text="Tất cả" 
+                        Command="{Binding ApplyFilterCommand}" 
+                        CommandParameter="All"
+                        Style="{StaticResource SecondaryButton}" 
+                        HeightRequest="36" Padding="12,0" />
+                
+                <Button Text="Sai" 
+                        Command="{Binding ApplyFilterCommand}" 
+                        CommandParameter="Incorrect"
+                        Style="{StaticResource SecondaryButton}" 
+                        HeightRequest="36" Padding="12,0" />
+
+                <Button Text="Đã đánh dấu" 
+                        Command="{Binding ApplyFilterCommand}" 
+                        CommandParameter="Flagged"
+                        Style="{StaticResource SecondaryButton}" 
+                        HeightRequest="36" Padding="12,0" />
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <!-- High Performance List -->
+        <!-- ItemSizingStrategy="MeasureFirstItem" is CRITICAL for 600+ items -->
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding ReviewItems}"
+                        ItemSizingStrategy="MeasureFirstItem" 
+                        SelectionMode="None">
+            
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="16">
+                    <Label Text="Không có dữ liệu" Style="{StaticResource SubtitleLabel}" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ReviewItemDisplay">
+                    <Grid Padding="16,8" ColumnDefinitions="40, *, Auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" /> <!-- Text -->
+                            <RowDefinition Height="Auto" /> <!-- Details -->
+                        </Grid.RowDefinitions>
+
+                        <!-- Q# Box -->
+                        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" 
+                                BackgroundColor="{Binding StatusColor}"
+                                StrokeShape="RoundRectangle 8"
+                                HeightRequest="32" WidthRequest="32"
+                                VerticalOptions="Start" Margin="0,4,0,0">
+                            <Label Text="{Binding QuestionNumber}" 
+                                   TextColor="White"
+                                   FontSize="12" FontAttributes="Bold"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+
+                        <!-- Question Text -->
+                        <Label Grid.Row="0" Grid.Column="1" 
+                               Text="{Binding QuestionText}" 
+                               Style="{StaticResource PerformanceLabelStyle}" 
+                               MaxLines="2" 
+                               Margin="12,0,0,4" />
+
+                        <!-- Image Thumbnail (If exists) - Handled by binding to ImagePath -->
+                        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"
+                               Source="{Binding ImagePath}"
+                               Aspect="AspectFill"
+                               WidthRequest="60" HeightRequest="60"
+                               IsVisible="{Binding ImagePath, Converter={StaticResource IsNotNullConverter}}" />
+
+                        <!-- Answer Status -->
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" Margin="12,0,0,0" Spacing="2">
+                            <HorizontalStackLayout Spacing="4">
+                                <Label Text="Bạn chọn:" Style="{StaticResource CaptionLabel}" FontSize="11" />
+                                <Label Text="{Binding UserAnswer}" 
+                                       TextColor="{Binding UserAnswerColor}" 
+                                       FontSize="12" FontAttributes="Bold" 
+                                       LineBreakMode="TailTruncation" />
+                            </HorizontalStackLayout>
+                            
+                            <!-- Only show correct answer if wrong -->
+                            <HorizontalStackLayout Spacing="4" IsVisible="{Binding IsCorrect, Converter={StaticResource InvertedBoolConverter}}">
+                                <Label Text="Đáp án:" Style="{StaticResource CaptionLabel}" FontSize="11" />
+                                <Label Text="{Binding CorrectAnswer}" 
+                                       TextColor="#4CAF50" 
+                                       FontSize="12" FontAttributes="Bold"
+                                       LineBreakMode="TailTruncation" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Loading Overlay -->
+        <Grid Grid.RowSpan="3" BackgroundColor="#80000000" IsVisible="{Binding IsBusy}">
+            <ActivityIndicator IsRunning="True" Color="White" VerticalOptions="Center" HorizontalOptions="Center" />
+        </Grid>
+        
+        <!-- Home Button (Floating) -->
+        <Button Grid.Row="2" Text="Về trang chủ"
+                Command="{Binding GoHomeCommand}"
+                Style="{StaticResource PrimaryButton}"
+                HorizontalOptions="Center" VerticalOptions="End"
+                Margin="0,0,0,24" WidthRequest="200"
+                Shadow="{Shadow Brush=Black, Offset='0,4', Opacity=0.2, Radius=8}"/>
+
+    </Grid>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IsNotNullConverter xmlns:converters="clr-namespace:TracNghiemLaiXe.Converters" x:Key="IsNotNullConverter" />
+            <converters:InvertedBoolConverter xmlns:converters="clr-namespace:TracNghiemLaiXe.Converters" x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+</ContentPage>

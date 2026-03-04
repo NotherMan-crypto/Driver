@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tracnghiemlaixe.vn/schemas/question.json",
+  "title": "Vietnamese Driving Theory Question",
+  "description": "Schema for driving theory quiz questions supporting the official Vietnamese driving license exam",
+  "type": "object",
+  "required": [
+    "id",
+    "question_text",
+    "answers",
+    "correct_answer_id",
+    "category",
+    "license_types",
+    "is_paralysis",
+    "explanation",
+    "version",
+    "last_updated"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique question identifier",
+      "minimum": 1
+    },
+    "question_text": {
+      "type": "string",
+      "description": "The question content in Vietnamese",
+      "minLength": 1
+    },
+    "image_url": {
+      "type": ["string", "null"],
+      "description": "Local asset path for question image (e.g., assets/images/q001.png)",
+      "pattern": "^(assets/images/[a-zA-Z0-9_-]+\\.(png|jpg|jpeg|webp))?$"
+    },
+    "answers": {
+      "type": "array",
+      "description": "Array of answer options (2-4 answers)",
+      "minItems": 2,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/Answer"
+      }
+    },
+    "correct_answer_id": {
+      "type": "integer",
+      "description": "ID of the correct answer (must match one of the answer IDs)",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "category": {
+      "$ref": "#/$defs/Category"
+    },
+    "license_types": {
+      "type": "array",
+      "description": "Applicable license types (Many-to-Many relationship)",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/LicenseType"
+      }
+    },
+    "is_paralysis": {
+      "type": "boolean",
+      "description": "If true, incorrect answer results in immediate exam failure"
+    },
+    "explanation": {
+      "type": "string",
+      "description": "Detailed explanation shown in review mode",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "description": "Content version for sync mechanism",
+      "minimum": 1
+    },
+    "last_updated": {
+      "type": "string",
+      "description": "Last modification timestamp in ISO 8601 format",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "Answer": {
+      "type": "object",
+      "description": "A single answer option",
+      "required": ["id", "text"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Answer identifier (1-4)",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "text": {
+          "type": "string",
+          "description": "Answer content in Vietnamese",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "Category": {
+      "type": "string",
+      "description": "Official Vietnamese driving exam category",
+      "enum": [
+        "concepts_and_rules",
+        "transport_business",
+        "culture_and_ethics",
+        "driving_techniques",
+        "construction_repair",
+        "road_signs",
+        "situational_analysis"
+      ],
+      "x-enum-descriptions": {
+        "concepts_and_rules": "Khái niệm và Quy tắc",
+        "transport_business": "Nghiệp vụ Vận tải",
+        "culture_and_ethics": "Văn hóa và Đạo đức",
+        "driving_techniques": "Kỹ thuật Lái xe",
+        "construction_repair": "Cấu tạo và Sửa chữa",
+        "road_signs": "Biển báo Đường bộ",
+        "situational_analysis": "Sa Hình"
+      }
+    },
+    "LicenseType": {
+      "type": "string",
+      "description": "Vietnamese driving license type",
+      "enum": ["A1", "A2", "A3", "A4", "B1", "B2", "C", "D", "E", "F"]
+    }
+  },
+  "additionalProperties": false
+}

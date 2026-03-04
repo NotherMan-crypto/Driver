@@ -1,0 +1,31 @@
+{
+    "id": 1,
+    "question_text": "Khái niệm 'phương tiện giao thông cơ giới đường bộ' được hiểu như thế nào?",
+    "image_url": null,
+    "answers": [
+        {
+            "id": 1,
+            "text": "Gồm xe ô tô, máy kéo, xe mô tô hai bánh, xe gắn máy và các loại xe tương tự."
+        },
+        {
+            "id": 2,
+            "text": "Gồm xe ô tô, máy kéo, rơ moóc hoặc sơ mi rơ moóc được kéo bởi xe ô tô, máy kéo."
+        },
+        {
+            "id": 3,
+            "text": "Gồm xe ô tô, máy kéo, rơ moóc hoặc sơ mi rơ moóc được kéo bởi xe ô tô, máy kéo, xe mô tô hai bánh, xe mô tô ba bánh, xe gắn máy và các loại xe tương tự."
+        }
+    ],
+    "correct_answer_id": 3,
+    "category": "concepts_and_rules",
+    "license_types": [
+        "A1",
+        "A2",
+        "B1",
+        "B2"
+    ],
+    "is_paralysis": false,
+    "explanation": "Theo Luật Giao thông đường bộ, phương tiện giao thông cơ giới đường bộ bao gồm tất cả các loại xe có động cơ hoạt động trên đường bộ.",
+    "version": 1,
+    "last_updated": "2026-01-28T11:48:00+07:00"
+}

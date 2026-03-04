@@ -1,0 +1,39 @@
+# Build directories
+bin/
+obj/
+.next/
+node_modules/
+build/
+dist/
+out/
+.vs/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs and outputs
+*.log
+*.txt
+run_output.txt
+build_output.txt
+errors.txt
+
+# Agent and AI tools
+.agent/
+openclaw/
+.gemini/
+plan/
+*plan*.md
+
+# IDEs
+.idea/
+.vscode/
+
+# Build artifacts
+deploy.zip
+deploy.tar.gz
+
+# Mac/OSX
+.DS_Store

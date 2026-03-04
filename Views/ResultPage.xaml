@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TracNghiemLaiXe.ViewModels"
+             x:Class="TracNghiemLaiXe.Views.ResultPage"
+             x:DataType="vm:ResultViewModel"
+             Title="Kết Quả"
+             BackgroundColor="#F8FAFC">
+    
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+            
+            <!-- Result Icon -->
+            <Label Text="{Binding ResultIcon}" 
+                   FontSize="80" 
+                   HorizontalOptions="Center" />
+
+            <!-- Passed / Failed -->
+            <Label Text="{Binding ResultTitle}" 
+                   FontSize="36" 
+                   FontAttributes="Bold" 
+                   TextColor="{Binding ResultTitleColor}" 
+                   HorizontalOptions="Center" />
+
+            <!-- Score -->
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                 <Label Text="{Binding PercentageDisplay}" 
+                        FontSize="24" 
+                        FontAttributes="Bold"
+                        TextColor="#0F172A" />
+            </HorizontalStackLayout>
+           
+            <!-- Subtitle/Message -->
+            <Label Text="{Binding ResultSubtitle}" 
+                   FontSize="18" 
+                   TextColor="#64748B" 
+                   HorizontalOptions="Center" 
+                   HorizontalTextAlignment="Center" />
+
+            <!-- Fatal Question Warning -->
+            <Frame BackgroundColor="#FEE2E2" 
+                   BorderColor="#EF4444" 
+                   CornerRadius="8" 
+                   Padding="15" 
+                   IsVisible="{Binding ShowParalysisStatus}">
+                <Label Text="⚠️ Bạn đã sai câu hỏi điểm liệt!" 
+                       TextColor="#B91C1C" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center" />
+            </Frame>
+
+            <BoxView HeightRequest="1" Color="#E2E8F0" Margin="0,10" />
+
+            <!-- Action Buttons -->
+            <Button Text="Xem lại bài" 
+                    Command="{Binding ReviewExamCommand}" 
+                    BackgroundColor="#F59E0B" 
+                    TextColor="White" 
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    WidthRequest="260"
+                    HorizontalOptions="Center"
+                    CornerRadius="25"/>
+
+            <Button Text="Làm lại đề này" 
+                    Command="{Binding RetryExamCommand}" 
+                    BackgroundColor="#2563EB" 
+                    TextColor="White" 
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    WidthRequest="260"
+                    HorizontalOptions="Center"
+                    CornerRadius="25"/>
+
+            <Button Text="Về Trang Chủ" 
+                    Command="{Binding GoHomeCommand}" 
+                    BackgroundColor="Transparent" 
+                    TextColor="#64748B" 
+                    FontAttributes="Bold" 
+                    WidthRequest="260"
+                    HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
